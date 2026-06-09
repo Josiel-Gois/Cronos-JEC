@@ -1,0 +1,1019 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --color-primary: #0a2240;      /* Azul Escuro Institucional TJSC */
+  --color-primary-light: #16365c;
+  --color-accent: #b89047;       /* Dourado TJSC */
+  --color-accent-hover: #a37c37;
+  --color-bg: #f4f6f9;           /* Cinza claro de fundo */
+  --color-card-bg: #ffffff;      /* Fundo do card */
+  --color-text-main: #2d3748;    /* Texto principal */
+  --color-text-muted: #718096;   /* Texto secundário */
+  --color-border: #e2e8f0;       /* Cor de borda */
+  --color-success: #38a169;      /* Verde sucesso */
+  --color-error: #e53e3e;        /* Vermelho erro */
+  --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shadow-premium: 0 10px 30px rgba(10, 34, 64, 0.05);
+  --shadow-soft: 0 4px 12px rgba(10, 34, 64, 0.03);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+/* Faixa Dourada Superior */
+.top-accent-bar {
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, #d4b473 50%, var(--color-accent) 100%);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Container Principal */
+.app-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 18px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  color: var(--color-accent);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title {
+  font-family: var(--font-title);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.sub-title {
+  font-family: var(--font-title);
+  font-size: 20px;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.app-tag {
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: 700;
+  background-color: rgba(184, 144, 71, 0.12);
+  color: var(--color-accent);
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.8px;
+}
+
+/* Abas do Dashboard */
+.dashboard-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 1px;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg);
+  z-index: 100;
+  padding-top: 14px;
+  margin-top: -14px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dashboard-tabs.stuck {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border-bottom-color: transparent;
+}
+
+.tab-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  color: var(--color-text-muted);
+  font-family: var(--font-title);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+}
+
+.tab-link:hover {
+  color: var(--color-primary);
+  background-color: rgba(10, 34, 64, 0.03);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.tab-link.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent);
+}
+
+.tab-link svg {
+  transition: transform 0.2s ease;
+}
+
+.tab-link:hover svg {
+  transform: translateY(-1px);
+}
+
+/* Conteúdo JEC Específico */
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 24px;
+}
+
+/* Info container que age como o Card */
+.info-container {
+  background-color: var(--color-card-bg);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow-premium);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+.name {
+  font-family: var(--font-title);
+  color: var(--color-primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1.5px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-family: var(--font-title);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.text {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+.button-container {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.btn-success,
+.btn-danger,
+.btn {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-success {
+  background-color: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(10, 34, 64, 0.15);
+}
+
+.btn-success:hover {
+  background-color: var(--color-primary-light);
+  box-shadow: 0 6px 16px rgba(10, 34, 64, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background-color: white;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-main);
+}
+
+.btn-danger:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+  background-color: rgba(229, 62, 62, 0.03);
+  transform: translateY(-1px);
+}
+
+.btn-history {
+  border: 1.5px solid var(--color-accent) !important;
+  color: var(--color-primary) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-history:hover {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(184, 144, 71, 0.15);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.input-placeholder {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background-color: #fafbfc;
+  color: var(--color-text-main);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184, 144, 71, 0.15);
+  background-color: #ffffff;
+}
+
+/* Select custom style */
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background-color: #fafbfc;
+  color: var(--color-text-main);
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+}
+
+.form-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(184, 144, 71, 0.15);
+  background-color: #ffffff;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.check-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.check-box input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.check-box .check {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.warn {
+  color: var(--color-error);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Footer institucional oficial do Cronos */
+.app-footer-inst {
+  background-color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 32px 24px;
+  margin-top: auto;
+  border-top: 4px solid var(--color-accent);
+}
+
+.app-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .app-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-title);
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-col p, .footer-col span {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.footer-col a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: #d4b473;
+  text-decoration: underline;
+}
+
+/* Estilos dos Anexos / Previews */
+.file-preview, .file-preview-grid {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.file-preview-item {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.file-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.file-preview-item .remove-preview-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: rgba(229, 62, 62, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s;
+}
+.file-preview-item .remove-preview-btn:hover {
+  background-color: #e53e3e;
+}
+
+/* Estilos de Impressão */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  .top-accent-bar,
+  .app-header,
+  .dashboard-tabs,
+  .info-container,
+  .app-footer-inst,
+  #pageFooter {
+    display: none !important;
+  }
+  .container-main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  #doc1, #doc2 {
+    display: block !important;
+  }
+  #firstTerm:not(.hidden),
+  #secondTerm:not(.hidden),
+  #thirdTerm:not(.hidden) {
+    display: block !important;
+    page-break-after: always;
+  }
+  .attached-doc-page {
+    display: block !important;
+    page-break-before: always;
+    page-break-after: always;
+  }
+}
+
+/* Modal Estilos */
+.cronos-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 34, 64, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.25s ease;
+}
+
+.cronos-modal-box {
+  background-color: var(--color-card-bg);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(10, 34, 64, 0.15);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+}
+
+.cronos-modal-title {
+  font-family: var(--font-title);
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cronos-modal-text {
+  font-size: 1rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+.cronos-modal-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.cronos-modal-btn {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+}
+
+.cronos-modal-btn-primary {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.cronos-modal-btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.cronos-modal-btn-secondary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.cronos-modal-btn-secondary:hover {
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+.cronos-modal-btn-cancel {
+  background-color: white;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.cronos-modal-btn-cancel:hover {
+  border-color: var(--color-text-main);
+  color: var(--color-text-main);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================
+   BOTOES FLUTUANTES DE AJUDA E POPUPS (JEC)
+   ========================================== */
+
+.help-popup-container {
+  display: inline-block;
+  line-height: 1;
+  z-index: 99;
+}
+
+.btn-help-icon {
+  background-color: transparent;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  outline: none;
+}
+
+.btn-help-icon:hover,
+.btn-help-icon.active {
+  background-color: var(--color-bg);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(184, 144, 71, 0.2);
+}
+
+.btn-help-icon svg {
+  display: block;
+}
+
+.help-popup-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(10, 34, 64, 0.12);
+  border-radius: var(--radius);
+  padding: 16px;
+  z-index: 1000;
+  width: max-content;
+  max-width: 320px;
+  box-sizing: border-box;
+  animation: fadeInHelp 0.2s ease-out;
+}
+
+.help-popup-content.hidden {
+  display: none !important;
+}
+
+@keyframes fadeInHelp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar inside the popup description */
+.help-popup-content div::-webkit-scrollbar {
+  width: 4px;
+}
+
+.help-popup-content div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.help-popup-content div::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.help-popup-content div::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ==========================================
+   BOTOES FLUTUANTES DO ASSISTENTE CRONOS
+   ========================================== */
+
+/* Botão flutuante na extremidade inferior direita */
+.assistant-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--color-accent);
+  background-color: var(--color-card-bg);
+  box-shadow: 0 8px 24px rgba(10, 34, 64, 0.18);
+  cursor: pointer;
+  z-index: 9999;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.assistant-floating-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.assistant-floating-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 32px rgba(10, 34, 64, 0.28);
+  border-color: var(--color-accent-hover);
+}
+
+.assistant-floating-btn:active {
+  transform: scale(0.95);
+}
+
+/* Modal Gigante do Assistente */
+.assistant-giant-box {
+  max-width: 840px !important;
+  width: 94% !important;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important; /* Retira o padding padrão do box para estruturar o scroll interno */
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.assistant-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.assistant-modal-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-accent);
+  object-fit: cover;
+}
+
+.assistant-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.assistant-modal-close-btn:hover {
+  color: var(--color-error);
+}
+
+.assistant-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+/* Layout de duas colunas do Assistente */
+.assistant-body-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.assistant-hero-column {
+  flex: 0 0 240px;
+  background: linear-gradient(135deg, rgba(10, 34, 64, 0.03) 0%, rgba(184, 144, 71, 0.05) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  box-shadow: var(--shadow-soft);
+  align-self: flex-start;
+}
+
+.assistant-hero-column img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--color-accent);
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(10, 34, 64, 0.15);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.assistant-hero-column:hover img {
+  transform: scale(1.06) rotate(3deg);
+  border-color: var(--color-accent-hover);
+}
+
+.assistant-hero-title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-align: center;
+}
+
+.assistant-hero-text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.assistant-content-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Acordeão elegante */
+.assistant-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.accordion-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-card-bg);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.accordion-item:hover {
+  border-color: var(--color-accent);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+  background-color: rgba(184, 144, 71, 0.04);
+}
+
+.accordion-header .chevron {
+  transition: transform 0.3s ease;
+  color: var(--color-text-muted);
+}
+
+.accordion-item.active {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(184, 144, 71, 0.05);
+}
+
+.accordion-item.active .accordion-header {
+  background-color: rgba(184, 144, 71, 0.05);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accordion-item.active .chevron {
+  transform: rotate(180deg);
+  color: var(--color-accent);
+}
+
+.accordion-content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  background-color: #fafbfc;
+}
+
+.accordion-item.active .accordion-content {
+  padding: 18px 20px;
+  max-height: 500px; /* Suficiente para o conteúdo expandido */
+  overflow-y: auto;
+}
+
+.accordion-content p {
+  margin-bottom: 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+.accordion-content ul {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordion-content li {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+/* Seção de Contatos no Assistente */
+.assistant-contact-section {
+  background: linear-gradient(135deg, rgba(10, 34, 64, 0.02) 0%, rgba(184, 144, 71, 0.04) 100%);
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+/* Botões do rodapé do modal no modal customizado do assistente */
+.assistant-giant-box .cronos-modal-buttons {
+  padding: 16px 24px;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  margin-top: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+/* --- Ilustracoes das Paginas Principais (unDraw) --- */
+.main-page-illustration {
+    width: 200px;
+    height: 140px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 12px rgba(10, 34, 64, 0.06));
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+.main-page-illustration:hover {
+    transform: scale(1.03) translateY(-2px);
+}

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronos - Histórico de Atermações</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./docs.css">
+    <link rel="stylesheet" href="./history.css">
+</head>
+<body>
+  <!-- Faixa Dourada Superior -->
+  <div class="top-accent-bar"></div>
+
+  <div class="app-container" id="pageContainer">
+    <!-- Conteúdo Principal -->
+    <main class="container-main" id="pageMain">
+      <div class="info-container">
+        <div class="history-header">
+          <div class="header-left">
+            <a href="index.html" class="btn-action-back" title="Voltar para Triagem">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </a>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="header-icon">
+              <path d="M12 8v4l3 3"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+            <h2 class="history-title">Histórico de Atermações</h2>
+          </div>
+          <!-- Barra de Busca -->
+          <div class="search-wrapper">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar por requerente, reclamado ou data..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table id="historyTable" class="history-table">
+            <thead>
+              <tr>
+                <th>Data / Hora</th>
+                <th>Requerente Principal</th>
+                <th>Reclamado Principal</th>
+                <th>Valor da Causa</th>
+                <th class="actions-header" style="text-align: center;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <!-- Injetado via Javascript -->
+            </tbody>
+          </table>
+          <div id="noData" class="no-data hidden">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="no-data-icon">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+            <p>Nenhum registro de atermação localizado.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- INICIO DO DOCUMENTO 1 (OCULTO PARA IMPRESSÃO) -->
+  <div id="doc1" class="hidden">
+      <div id="toPrint">
+          <div class="generated">
+              <p class="generated-text">
+                  documento gerado às <strong id="headerTimeTarget"></strong>
+                      do dia <strong id="headerDateTarget"></strong>
+              </p>
+          </div>
+          <section class="doc-header">
+              <div class="doc-header-text">
+                  <h1 class="doc-title">
+                      PODER JUDICIÁRIO DE SANTA CATARINA
+                  </h1>
+                  <h1 class="doc-title-2">
+                      Comarca de Itapoá 1ª Vara
+                  </h1>
+                  <p class="doc-header-address">
+                      Rua Mariana Michels Borges, 776 - Bairro: Itapema do Norte - CEP: 89249-000 - Fone: (47)3443-8000 - Email:
+                      itapoa.vara1@tjsc.jus.br
+                  </p>
+              </div>
+          </section>
+          <section class="doc-section">
+              <div class="doc-section-title-box">
+                  <h1 class="doc-title-2">
+                      JUIZADO ESPECIAL CÍVEL
+                  </h1>
+              </div>
+              <div class="doc-info-box">
+                  <div class="doc-section-inside">
+                      <div class="process-info">
+                          <div class="doc-name-box">
+                              <h2 class="doc-name">
+                                  Ação:
+                              </h2>
+                              <p class="doc-name-content">
+                                  Procedimento do Juizado Especial Cível/PROC
+                              </p>
+                          </div>
+                          <div class="doc-name-box hidden" id="anticipationDisplayTarget">
+                              <h2 class="doc-name">
+                                  Pedido de antecipação de tutela: Sim
+                              </h2>
+                          </div>
+                      </div>
+                      <div class="user-info">
+                          <h1 class="user-info-title">
+                              Reclamante(s):
+                          </h1>
+                          <!-- PRIMEIRO RECLAMANTE -->
+                          <div class="user-box">
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Nome:
+                                  </h2>
+                                  <p class="doc-name-content" id="fr_nameTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Endereço:
+                                  </h2>
+                                  <p class="doc-name-content" id="fr_addressTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      CPF/CNPJ:
+                                  </h2>
+                                  <p class="doc-name-content" id="fr_documentTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Email:
+                                  </h2>
+                                  <p class="doc-name-content" id="fr_emailTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Whatsapp/Telefone:
+                                  </h2>
+                                  <p class="doc-name-content" id="fr_phoneTarget">
+                                      
+                                  </p>
+                              </div>
+                          </div>
+                          <!-- SEGUNDO RECLAMANTE -->
+                          <div class="user-box hidden" id="sr_displayTarget">
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Nome:
+                                  </h2>
+                                  <p class="doc-name-content" id="sr_nameTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Endereço:
+                                  </h2>
+                                  <p class="doc-name-content" id="sr_addressTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      CPF/CNPJ:
+                                  </h2>
+                                  <p class="doc-name-content" id="sr_documentTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Email:
+                                  </h2>
+                                  <p class="doc-name-content" id="sr_emailTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Whatsapp/Telefone:
+                                  </h2>
+                                  <p class="doc-name-content" id="sr_phoneTarget">
+                                      
+                                  </p>
+                              </div>
+                          </div>
+                          <!-- TERCEIRO RECLAMANTE -->
+                          <div class="user-box hidden" id="tr_displayTarget">
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Nome:
+                                  </h2>
+                                  <p class="doc-name-content" id="tr_nameTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Endereço:
+                                  </h2>
+                                  <p class="doc-name-content" id="tr_addressTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      CPF/CNPJ:
+                                  </h2>
+                                  <p class="doc-name-content" id="tr_documentTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Email:
+                                  </h2>
+                                  <p class="doc-name-content" id="tr_emailTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Whatsapp/Telefone:
+                                  </h2>
+                                  <p class="doc-name-content" id="tr_phoneTarget">
+                                      
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="user-info">
+                          <h1 class="user-info-title">
+                              Reclamado(s):
+                          </h1>
+                          <!-- PRIMEIRO RECLAMADO -->
+                          <div class="user-box">
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Nome:
+                                  </h2>
+                                  <p class="doc-name-content" id="frd_nameTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Endereço:
+                                  </h2>
+                                  <p class="doc-name-content" id="frd_addressTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      CPF/CNPJ:
+                                  </h2>
+                                  <p class="doc-name-content" id="frd_documentTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Email:
+                                  </h2>
+                                  <p class="doc-name-content" id="frd_emailTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Whatsapp/Telefone:
+                                  </h2>
+                                  <p class="doc-name-content" id="frd_phoneTarget">
+                                      
+                                  </p>
+                              </div>
+                          </div>
+                          <!-- SEGUNDO RECLAMADO -->
+                          <div class="user-box hidden" id="srd_displayTarget">
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Nome:
+                                  </h2>
+                                  <p class="doc-name-content" id="srd_nameTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Endereço:
+                                  </h2>
+                                  <p class="doc-name-content" id="srd_addressTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      CPF/CNPJ:
+                                  </h2>
+                                  <p class="doc-name-content" id="srd_documentTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Email:
+                                  </h2>
+                                  <p class="doc-name-content" id="srd_emailTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Whatsapp/Telefone:
+                                  </h2>
+                                  <p class="doc-name-content" id="srd_phoneTarget">
+                                      
+                                  </p>
+                              </div>
+                          </div>
+                          <!-- TERCEIRO RECLAMADO -->
+                          <div class="user-box hidden" id="trd_displayTarget">
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Nome:
+                                  </h2>
+                                  <p class="doc-name-content" id="trd_nameTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Endereço:
+                                  </h2>
+                                  <p class="doc-name-content" id="trd_addressTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      CPF/CNPJ:
+                                  </h2>
+                                  <p class="doc-name-content" id="trd_documentTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Email:
+                                  </h2>
+                                  <p class="doc-name-content" id="trd_emailTarget">
+                                      
+                                  </p>
+                              </div>
+                              <div class="doc-name-box">
+                                  <h2 class="doc-name">
+                                      Whatsapp/Telefone:
+                                  </h2>
+                                  <p class="doc-name-content" id="trd_phoneTarget">
+                                      
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="doc-text-box">
+                  <h2 class="doc-text-name">
+                      I. Dos fatos (Breve relato sobre o caso)
+                  </h2>
+                  <p class="doc-text" id="reportTarget">
+                      
+                  </p>
+              </div>
+              <div class="doc-text-box">
+                  <h2 class="doc-text-name">
+                      II. Do(s) Pedidos(s)
+                  </h2>
+                  <p class="doc-text" id="requestTextTarget">
+                      
+                  </p>
+              </div>
+              <div class="doc-text-box">
+                  <h2 class="doc-text-name">
+                      III. Valor da causa
+                  </h2>
+                  <p class="doc-text">
+                      Valor do dano moral: <span id="firstValue"></span>
+                  </p>
+                  <p class="doc-text">
+                      Valor do dano material: <span id="secondValue"></span>
+                  </p>
+                  <p class="doc-text">
+                      Dá-se a causa o valor total de: <span id="thirdValue"></span>
+                  </p>
+              </div>
+              <div class="doc-text-box hidden" id="anticipationTextDisplay">
+                  <h2 class="doc-text-name">
+                      IV. Antecipação de tutela
+                  </h2>
+                  <p class="doc-text" id="anticipationTextTarget">
+                      
+                  </p>
+              </div>
+              </div>
+              <div class="doc-footer">
+                  <p id="dateTarget">
+                      
+                  </p>
+                  <div class="doc-signer-box">
+                      <h2 class="" id="firstSignerNameTarget">
+                          
+                      </h2>
+                      <h2 class="" id="firstSignerDocument">
+                          
+                      </h2>
+                  </div>
+                  <div class="doc-signer-box hidden" id="secondSignerDisplay">
+                      <h2 class="" id="secondSignerNameTarget">
+                          
+                      </h2>
+                      <h2 class="" id="secondSignerDocument">
+                          
+                      </h2>
+                  </div>
+                  <div class="doc-signer-box hidden" id="thirdSignerDisplay">
+                      <h2 class="" id="thirdSignerNameTarget">
+                          
+                      </h2>
+                      <h2 class="" id="thirdSignerDocument">
+                          
+                      </h2>
+                  </div>
+              </div>
+          </section>
+  </div>
+  <!-- FIM DO DOCUMENTO 1 -->
+  
+  <!-- INICIO DOS TERMOS -->
+  <div id="firstTerm" class="hidden">
+          <div class="generated">
+              <p class="generated-text">
+                  documento gerado às <strong id="firstTermHeaderTimeTarget"></strong>
+                      do dia <strong id="firstTermHeaderDateTarget"></strong>
+              </p>
+          </div>
+          <div class="doc2-header">
+              <div class="doc2-header-address-box">
+                  <p class="doc2-header-address">
+                      Rua Mariana Michels Borges, 776 - Bairro: Itapema do Norte - CEP: 89249-000 - Fone: (47)3443-8000 - Email:
+                      itapoa.vara1@tjsc.jus.br
+                  </p>
+              </div>
+          </div>
+          <h1 class="doc2-title">
+              TERMO DE ADESÃO
+          </h1>
+          <div class="doc2-body">
+              <h3 class="doc2-title2">
+                  Autos n.
+              </h3>
+              <p class="doc2-content">
+                  Classe do Processo PROCEDIMENTO DO JUIZADO ESPECIAL CÍVEL
+              </p>
+              <div>
+                  <p class="doc2-content">
+                      Eu, 
+                      <span id="firstTermNameTarget"></span>, CPF: 
+                      <span id="firstTermDocumentTarget"></span>, residente e domiciliado rua 
+                      <span id="firstTermStreetTarget"></span>
+                      <span id="firstTermNumberTarget"></span> - 
+                      <span id="firstTermDistrictTarget"></span> – 
+                      <span id="firstTermCityStateTarget"></span> – 
+                      <span id="firstTermPostalCodeTarget"></span>, adiro voluntariamente à utilização do aplicativo de mensagens Whatsapp para receber intimações decorrentes da tramitação do processo acima informado, enviadas a partir do número telefônico (número do telefone distribuído à Secretaria do Juizado Especial). Para tanto, informo que receberei as intimações no telefone celular número 
+                      <span id="firstTermPhoneTarget"></span> ou pelo e-mail 
+                      <span id="firstTermEmailTarget"></span> e assumo o compromisso de comunicar imediatamente ao juízo a alteração do número de telefone informado e assinar novo termo de adesão, reputando eficazes as intimações enviadas ao telefone anteriormente cadastrado na ausência de comunicação da mudança.
+                  </p>
+                  <p class="doc2-content">
+                      Por este ato me declaro ciente do inteiro teor da Resolução Conjunta GP/CGJ n. 6 de 5 de outubro de 2017 e afirmo que:
+                  </p>
+                  <ul>
+                      <li class="doc2-content list">
+                          concordo com os termos da Resolução Conjunta GP/CGJ n. 6 de 5 de outubro de 2017 e com a intimação efetuada por meio do aplicativo de mensagens do Whatsapp;
+                      </li>
+                      <li class="doc2-content list">
+                          possuo o aplicativo de mensagens Whatsapp no aparelho de telefone ora informado;
+                      </li>
+                      <li class="doc2-content list">
+                          manterei ativa, na configuração de privacidade do aplicativo de mensagens Whatsapp, a opção recibo/confirmação de leitura;
+                      </li>
+                      <li class="doc2-content list">
+                          fui informado (a) sobre o número de telefone que será utilizado pela secretaria do Juizado Especial para realizar as intimações com a utilização do aplicativo de mensagens Whatsapp;
+                      </li>
+                      <li class="doc2-content list">
+                          fui cientificado (a) de que o Poder Judiciário do Estado de Santa Catarina, em nenhuma hipótese, solicita dados pessoais, bancários ou quaisquer outros de caráter sigiloso, limitando-se à utilização do aplicativo de mensagens Whatsapp para efetuar intimações; e
+                      </li>
+                      <li class="doc2-content list">
+                          Fui cientificado (a) de que as dúvidas referentes à intimação deverão ser tratadas exclusivamente na Secretaria do Juizado Especial na qual tramita o processo referido neste termo.
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="doc2-footer">
+              <p class="term-full-date" id="firstTermDateTarget"></p>
+              <h4 class="term-signer-name" id="firstTermSignerTarget"></h4>
+          </div>
+  </div>
+  <div id="secondTerm" class="hidden">
+      <div class="generated">
+          <p class="generated-text">
+              documento gerado às <strong id="secondTermHeaderTimeTarget"></strong>
+                  do dia <strong id="secondTermHeaderDateTarget"></strong>
+          </p>
+      </div>
+      <div class="doc2-header">
+          <div class="doc2-header-address-box">
+              <p class="doc2-header-address">
+                  Rua Mariana Michels Borges, 776 - Bairro: Itapema do Norte - CEP: 89249-000 - Fone: (47)3443-8000 - Email:
+                  itapoa.vara1@tjsc.jus.br
+              </p>
+          </div>
+      </div>
+      <h1 class="doc2-title">
+          TERMO DE ADESÃO
+      </h1>
+      <div class="doc2-body">
+          <h3 class="doc2-title2">
+              Autos n.
+          </h3>
+          <p class="doc2-content">
+              Classe do Processo PROCEDIMENTO DO JUIZADO ESPECIAL CÍVEL
+          </p>
+          <div>
+              <p class="doc2-content">
+                  Eu, 
+                  <span id="secondTermNameTarget"></span>, CPF: 
+                  <span id="secondTermDocumentTarget"></span>, residente e domiciliado rua 
+                  <span id="secondTermStreetTarget"></span>
+                  <span id="secondTermNumberTarget"></span> - 
+                  <span id="secondTermDistrictTarget"></span> – 
+                  <span id="secondTermCityStateTarget"></span> – 
+                  <span id="secondTermPostalCodeTarget"></span>, adiro voluntariamente à utilização do aplicativo de mensagens Whatsapp para receber intimações decorrentes da tramitação do processo acima informado, enviadas a partir do número telefônico (número do telefone distribuído à Secretaria do Juizado Especial). Para tanto, informo que receberei as intimações no telefone celular número 
+                  <span id="secondTermPhoneTarget"></span> ou pelo e-mail 
+                  <span id="secondTermEmailTarget"></span> e assumo o compromisso de comunicar imediatamente ao juízo a alteração do número de telefone informado e assinar novo termo de adesão, reputando eficazes as intimações enviadas ao telefone anteriormente cadastrado na ausência de comunicação da mudança.
+              </p>
+              <p class="doc2-content">
+                  Por este ato me declaro ciente do inteiro teor da Resolução Conjunta GP/CGJ n. 6 de 5 de outubro de 2017 e afirmo que:
+              </p>
+              <ul>
+                  <li class="doc2-content list">
+                      concordo com os termos da Resolução Conjunta GP/CGJ n. 6 de 5 de outubro de 2017 e com a intimação efetuada por meio do aplicativo de mensagens do Whatsapp;
+                  </li>
+                  <li class="doc2-content list">
+                      possuo o aplicativo de mensagens Whatsapp no aparelho de telefone ora informado;
+                  </li>
+                  <li class="doc2-content list">
+                      manterei ativa, na configuração de privacidade do aplicativo de mensagens Whatsapp, a opção recibo/confirmação de leitura;
+                  </li>
+                  <li class="doc2-content list">
+                      fui informado (a) sobre o número de telefone que será utilizado pela secretaria do Juizado Especial para realizar as intimações com a utilização do aplicativo de mensagens Whatsapp;
+                  </li>
+                  <li class="doc2-content list">
+                      fui cientificado (a) de que o Poder Judiciário do Estado de Santa Catarina, em nenhuma hipótese, solicita dados pessoais, bancários ou quaisquer outros de caráter sigiloso, limitando-se à utilização do aplicativo de mensagens Whatsapp para efetuar intimações; e
+                  </li>
+                  <li class="doc2-content list">
+                      Fui cientificado (a) de que as dúvidas referentes à intimação deverão ser tratadas exclusivamente na Secretaria do Juizado Especial na qual tramita o processo referido neste termo.
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="doc2-footer">
+          <p class="term-full-date" id="secondTermDateTarget"></p>
+          <h4 class="term-signer-name" id="secondTermSignerTarget"></h4>
+      </div>
+  </div>
+  <div id="thirdTerm" class="hidden">
+      <div class="generated">
+          <p class="generated-text">
+              documento gerado às <strong id="thirdTermHeaderTimeTarget"></strong>
+                  do dia <strong id="thirdTermHeaderDateTarget"></strong>
+          </p>
+      </div>
+      <div class="doc2-header">
+          <div class="doc2-header-address-box">
+              <p class="doc2-header-address">
+                  Rua Mariana Michels Borges, 776 - Bairro: Itapema do Norte - CEP: 89249-000 - Fone: (47)3443-8000 - Email:
+                  itapoa.vara1@tjsc.jus.br
+              </p>
+          </div>
+      </div>
+      <h1 class="doc2-title">
+          TERMO DE ADESÃO
+      </h1>
+      <div class="doc2-body">
+          <h3 class="doc2-title2">
+              Autos n.
+          </h3>
+          <p class="doc2-content">
+              Classe do Processo PROCEDIMENTO DO JUIZADO ESPECIAL CÍVEL
+          </p>
+          <div>
+              <p class="doc2-content">
+                  Eu, 
+                  <span id="thirdTermNameTarget"></span>, CPF: 
+                  <span id="thirdTermDocumentTarget"></span>, residente e domiciliado rua 
+                  <span id="thirdTermStreetTarget"></span>
+                  <span id="thirdTermNumberTarget"></span> - 
+                  <span id="thirdTermDistrictTarget"></span> – 
+                  <span id="thirdTermCityStateTarget"></span> – 
+                  <span id="thirdTermPostalCodeTarget"></span>, adiro voluntariamente à utilização do aplicativo de mensagens Whatsapp para receber intimações decorrentes da tramitação do processo acima informado, enviadas a partir do número telefônico (número do telefone distribuído à Secretaria do Juizado Especial). Para tanto, informo que receberei as intimações no telefone celular número 
+                  <span id="thirdTermPhoneTarget"></span> ou pelo e-mail 
+                  <span id="thirdTermEmailTarget"></span> e assumo o compromisso de comunicar imediatamente ao juízo a alteração do número de telefone informado e assinar novo termo de adesão, reputando eficazes as intimações enviadas ao telefone anteriormente cadastrado na ausência de comunicação da mudança.
+              </p>
+              <p class="doc2-content">
+                  Por este ato me declaro ciente do inteiro teor da Resolução Conjunta GP/CGJ n. 6 de 5 de outubro de 2017 e afirmo que:
+              </p>
+              <ul>
+                  <li class="doc2-content list">
+                      concordo com os termos da Resolução Conjunta GP/CGJ n. 6 de 5 de outubro de 2017 e com a intimação efetuada por meio do aplicativo de mensagens do Whatsapp;
+                  </li>
+                  <li class="doc2-content list">
+                      possuo o aplicativo de mensagens Whatsapp no aparelho de telefone ora informado;
+                  </li>
+                  <li class="doc2-content list">
+                      manterei ativa, na configuração de privacidade do aplicativo de mensagens Whatsapp, a opção recibo/confirmação de leitura;
+                  </li>
+                  <li class="doc2-content list">
+                      fui informado (a) sobre o número de telefone que será utilizado pela secretaria do Juizado Especial para realizar as intimações com a utilização do aplicativo de mensagens Whatsapp;
+                  </li>
+                  <li class="doc2-content list">
+                      fui cientificado (a) de que o Poder Judiciário do Estado de Santa Catarina, em nenhuma hipótese, solicita dados pessoais, bancários ou quaisquer outros de caráter sigiloso, limitando-se à utilização do aplicativo de mensagens Whatsapp para efetuar intimações; e
+                  </li>
+                  <li class="doc2-content list">
+                      Fui cientificado (a) de que as dúvidas referentes à intimação deverão ser tratadas exclusivamente na Secretaria do Juizado Especial na qual tramita o processo referido neste termo.
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="doc2-footer">
+          <p class="term-full-date" id="thirdTermDateTarget"></p>
+          <h4 class="term-signer-name" id="thirdTermSignerTarget"></h4>
+      </div>
+  </div>
+  <!-- FIM DOS TERMOS -->
+
+  <!-- CONTAINER PARA ANEXOS IMPRESSÃO -->
+  <div id="attachedDocsPrintContainer"></div>
+
+  <footer class="app-footer-inst" id="pageFooter">
+    <div class="app-footer-grid">
+      <div class="footer-col">
+        <h4>Poder Judiciário de Santa Catarina</h4>
+        <p>Rua Mariana Michels Borges, 776 - Bairro: Itapema do Norte - CEP: 89249-000</p>
+        <p>Fone: (47) 3130-8408 • Email: itapoa.vara1@tjsc.jus.br</p>
+      </div>
+      <div class="footer-col">
+        <h4>Horário de Funcionamento</h4>
+        <p>Regimental: 12:00 às 19:00</p>
+        <p>Atendimento ao Público: 12:00 às 18:00</p>
+      </div>
+      <div class="footer-col">
+        <h4>Links Úteis</h4>
+        <a href="https://app.tjsc.jus.br/tjsc-consulta-email/#/" target="_blank">E-mails úteis</a>
+        <a href="https://www.tjsc.jus.br/enderecos-e-telefones" target="_blank">Telefones úteis</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./lib/jquery-3.7.0.min.js"></script>
+  <script src="./lib/jspdf.umd.min.js"></script>
+  <script src="./lib/pdf-lib.min.js"></script>
+  <script src="./pdf-generator.js"></script>
+  <script src="./history.js"></script>
+
+  
+  <style type="text/css">
+      /* --- Estilos do Cronos Assistente --- */
+      .assistant-floating-btn {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 3px solid var(--color-accent, #b89047);
+          background-color: var(--color-card-bg, #ffffff);
+          box-shadow: 0 8px 24px rgba(10, 34, 64, 0.18);
+          cursor: pointer;
+          z-index: 9999;
+          padding: 0;
+          overflow: hidden;
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          outline: none;
+      }
+      .assistant-floating-btn img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+      }
+      .assistant-floating-btn:hover {
+          transform: scale(1.1) translateY(-3px);
+          box-shadow: 0 12px 32px rgba(10, 34, 64, 0.28);
+          border-color: var(--color-accent-hover, #a37c37);
+      }
+      .assistant-floating-btn:active {
+          transform: scale(0.95);
+      }
+      .cronos-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(10, 34, 64, 0.4);
+          backdrop-filter: blur(4px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10000;
+          animation: fadeInHelp 0.2s ease-out;
+      }
+      .cronos-modal-overlay.hidden {
+          display: none !important;
+      }
+      .cronos-modal-box {
+          background-color: var(--color-card-bg, #ffffff);
+          border-radius: var(--radius, 8px);
+          box-shadow: 0 15px 35px rgba(10, 34, 64, 0.2);
+          width: 90%;
+          box-sizing: border-box;
+          animation: scaleUpHelp 0.2s ease-out;
+      }
+      .assistant-giant-box {
+          max-width: 840px !important;
+          width: 94% !important;
+          max-height: 90vh;
+          display: flex;
+          flex-direction: column;
+          padding: 0 !important;
+          overflow: hidden;
+          border: 1px solid var(--color-border, #e2e8f0);
+      }
+      .assistant-modal-header {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 20px 24px;
+          background-color: var(--color-bg, #f4f6f9);
+          border-bottom: 1px solid var(--color-border, #e2e8f0);
+          position: relative;
+          flex-shrink: 0;
+          text-align: left;
+      }
+      .assistant-modal-logo {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 1.5px solid var(--color-accent, #b89047);
+          object-fit: cover;
+      }
+      .cronos-modal-title {
+          font-family: var(--font-title, sans-serif);
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--color-primary, #0a2240);
+          margin: 0;
+      }
+      .assistant-modal-close-btn {
+          position: absolute;
+          top: 16px;
+          right: 20px;
+          background: transparent;
+          border: none;
+          font-size: 1.75rem;
+          font-weight: 300;
+          line-height: 1;
+          color: var(--color-text-muted, #718096);
+          cursor: pointer;
+          transition: color 0.2s ease;
+      }
+      .assistant-modal-close-btn:hover {
+          color: var(--color-error, #e53e3e);
+      }
+      .assistant-modal-body {
+          padding: 24px;
+          overflow-y: auto;
+          flex-grow: 1;
+          box-sizing: border-box;
+          text-align: left;
+      }
+      .assistant-body-layout {
+          display: flex;
+          gap: 24px;
+          align-items: flex-start;
+      }
+      .assistant-hero-column {
+          flex: 0 0 240px;
+          background: linear-gradient(135deg, rgba(10, 34, 64, 0.03) 0%, rgba(184, 144, 71, 0.05) 100%);
+          border: 1px solid var(--color-border, #e2e8f0);
+          border-radius: 12px;
+          padding: 24px 20px;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          position: sticky;
+          top: 0;
+          box-shadow: 0 4px 12px rgba(10, 34, 64, 0.03);
+          align-self: flex-start;
+      }
+      .assistant-hero-column img {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          border: 4px solid var(--color-accent, #b89047);
+          object-fit: cover;
+          box-shadow: 0 8px 20px rgba(10, 34, 64, 0.15);
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .assistant-hero-column:hover img {
+          transform: scale(1.06) rotate(3deg);
+          border-color: var(--color-accent-hover, #a37c37);
+      }
+      .assistant-hero-title {
+          margin: 0;
+          font-family: var(--font-title, sans-serif);
+          font-size: 1.15rem;
+          color: var(--color-primary, #0a2240);
+          font-weight: 700;
+          text-align: center;
+      }
+      .assistant-hero-text {
+          margin: 0;
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.85rem;
+          color: var(--color-text-muted, #718096);
+          line-height: 1.45;
+          text-align: center;
+      }
+      .assistant-content-column {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+      }
+      .assistant-contact-section {
+          background: linear-gradient(135deg, rgba(10, 34, 64, 0.02) 0%, rgba(184, 144, 71, 0.04) 100%);
+          border: 1px dashed var(--color-accent, #b89047);
+          border-radius: 8px;
+          padding: 16px 20px;
+          margin-top: 12px;
+      }
+      .cronos-modal-btn {
+          padding: 10px 20px;
+          font-family: var(--font-body, sans-serif);
+          font-size: 0.9rem;
+          font-weight: 500;
+          border-radius: var(--radius, 8px);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          text-decoration: none;
+          border: none;
+      }
+      .cronos-modal-btn-primary {
+          background-color: var(--color-accent, #b89047);
+          color: white;
+      }
+      .cronos-modal-btn-primary:hover {
+          background-color: var(--color-accent-hover, #a37c37);
+          transform: translateY(-1px);
+      }
+      @keyframes fadeInHelp {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      @keyframes scaleUpHelp {
+          from { transform: scale(0.95); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+      }
+  </style>
+  <!-- Botão Flutuante do Cronos Assistente -->
+  <button type="button" id="cronosAssistantBtn" class="assistant-floating-btn" title="Cronos Assistente - Ajuda Geral">
+      <img src="./icons/cronos-assistant.jpg" alt="Cronos Assistente">
+  </button>
+
+  <!-- Modal Gigante do Cronos Assistente -->
+  <div id="cronosAssistantModal" class="cronos-modal-overlay hidden">
+      <div class="cronos-modal-box assistant-giant-box">
+          <div class="assistant-modal-header">
+              <img src="./icons/cronos-assistant.jpg" class="assistant-modal-logo" alt="Cronos Assistente">
+              <div>
+                  <h3 class="cronos-modal-title">Histórico de Atermações</h3>
+                  <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: var(--color-text-muted); font-family: var(--font-body); line-height: 1;">Guia de Ajuda Integrado</p>
+              </div>
+              <button type="button" class="assistant-modal-close-btn" id="closeAssistantModalBtn">&times;</button>
+          </div>
+          
+          <div class="assistant-modal-body">
+              <div class="assistant-body-layout">
+                  <!-- Coluna da Esquerda: Cronos Assistente Hero -->
+                  <div class="assistant-hero-column">
+                      <img src="./icons/cronos-assistant.jpg" alt="Cronos Assistente">
+                      <h4 class="assistant-hero-title">Como funciona?</h4>
+                      <p class="assistant-hero-text">
+                          Eu sou o Cronos, seu assistente. Veja ao lado como gerenciar suas atermações!
+                      </p>
+                  </div>
+
+                  <!-- Coluna da Direita: Conteúdo de Instrução -->
+                  <div class="assistant-content-column">
+                                  <h3 style="margin: 0 0 12px 0; font-family: var(--font-title); color: var(--color-primary); font-size: 1.1rem; font-weight: 700;">📋 Histórico de Atermações JEC</h3>
+            <p style="margin-bottom: 12px; font-size: 0.88rem; color: var(--color-text-main);">Gerencie todos os formulários de atermação que foram preenchidos e salvos na comarca.</p>
+            <h4 style="margin: 14px 0 6px 0; color: var(--color-primary); font-size: 0.95rem; font-weight: 700; font-family: var(--font-title);">Ações disponíveis:</h4>
+            <ul style="padding-left: 20px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--color-text-main);">
+                <li><strong>Editar (Lápis):</strong> Reabre o formulário da atermação pré-preenchido para correção de informações.</li>
+                <li><strong>Gerar PDF (Seta de Download):</strong> Baixa o arquivo PDF consolidado com o Termo de Adesão ao WhatsApp e os documentos anexos formatados.</li>
+                <li><strong>Enviar por E-mail (Envelope):</strong> Baixa a petição no computador e abre o cliente de e-mail pré-preenchido para <code>itapoa.distribuicao@tjsc.jus.br</code>.</li>
+                <li><strong>Assinar no GOV.BR (Caneta):</strong> Abre diretamente a página oficial do portal de assinaturas eletrônicas do governo federal em nova aba.</li>
+            </ul>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="cronos-modal-buttons" style="margin-top: 0; justify-content: flex-end; padding: 16px 24px; background-color: var(--color-bg); border-top: 1px solid var(--color-border); flex-shrink: 0; display: flex; gap: 12px; box-sizing: border-box;">
+              <button type="button" class="cronos-modal-btn cronos-modal-btn-primary" id="closeAssistantModalOkBtn">Entendi, obrigado!</button>
+          </div>
+      </div>
+  </div>
+
+  <script src="./assistant.js"></script></body>
+</html>
