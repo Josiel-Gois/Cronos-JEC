@@ -1017,3 +1017,38 @@ textarea.form-input {
 .main-page-illustration:hover {
     transform: scale(1.03) translateY(-2px);
 }
+
+/* ==========================================
+   AJUSTE DE TÍTULOS COM BOTÕES DE AJUDA
+   Garante fundo total e centralização do texto
+   ========================================== */
+.info-header {
+  display: block !important;
+  position: relative;
+  margin-bottom: 20px !important;
+}
+
+.info-header .title {
+  width: 100% !important;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.info-header .help-popup-container {
+  position: absolute !important;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.info-header .btn-help-icon {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: white !important;
+}
+
+.info-header .btn-help-icon:hover {
+  background-color: white !important;
+  color: var(--color-primary) !important;
+  border-color: white !important;
+}
